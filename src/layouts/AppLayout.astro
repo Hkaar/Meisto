@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 interface Props {
   title?: string;
@@ -23,6 +24,7 @@ const {
     <slot name="head" />
   </head>
   <body>
+    <Toaster client:idle />
     <slot />
   </body>
 </html>
