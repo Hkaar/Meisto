@@ -5,11 +5,22 @@ import tailwind from "@astrojs/tailwind";
 
 import react from "@astrojs/react";
 
-import icon from "astro-icon";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "hybrid",
+
   integrations: [tailwind({
     applyBaseStyles: false,
-  }), react(), icon()],
+  }), react()],
+
+  vite: {
+    build: {
+      cssMinify: true,
+      minify: true,
+    }
+  },
+
+  adapter: cloudflare()
 });
