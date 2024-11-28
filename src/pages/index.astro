@@ -1,19 +1,179 @@
 ---
 import AppLayout from "@/layouts/AppLayout.astro";
 
-import { Button } from "@/components/ui/button";
+import { Search, Compass, Archive, ArrowRight } from "lucide-react";
+
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { Image } from "astro:assets";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
+
+import BunImage from "@/assets/images/bun.jpg";
+import CakeImage from "@/assets/images/cake.jpg";
+import HamburgerImage from "@/assets/images/hamburger.jpg";
+import MeatImage from "@/assets/images/meat.jpg";
+import PizzaImage from "@/assets/images/pizza.jpg";
+import SalmonImage from "@/assets/images/salmon.jpg";
+import TiramisuImage from "@/assets/images/tiramisu.jpg";
 ---
 
 <AppLayout title="Home - Meisto">
-	<Header className="min-w-full px-4 py-3" client:load />
+  <Header className="min-w-full px-4 py-3" client:load />
 
-	<main class="min-h-screen flex flex-col relative">
-		<div class="container flex-1 grid place-items-center">
-			<Button>Hello world!</Button>
-		</div>
-	</main>
+  <main class="min-h-screen flex flex-col relative">
+    <section id="hero" class="min-h-[45rem] flex">
+      <div class="container px-4 grid place-items-center flex-1">
+        <div class="flex flex-col items-center gap-6 w-full">
+          <div class="flex flex-col gap-3 items-center text-center">
+            <h1 class="text-5xl font-bold tracking-tight">
+              A Recipe for Every Occasion
+            </h1>
 
-	<Footer />
+            <span class="text-gray-500 leading-none">
+              Explore various recipes for you to use in your cooking
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-3 items-center w-2/3">
+            <div class="relative w-full">
+              <Input
+                type="text"
+                placeholder="Search for a recipe..."
+                className="w-full ps-8"
+              />
+              <div class="absolute inset-y-2.5 start-0 ps-2">
+                <Search className="size-4" />
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <Button>
+                <Search />
+                Search
+              </Button>
+              <Button variant={"secondary"}>
+                <Compass />
+                Browse Recipes
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-8">
+      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5">
+        <div class="grid place-items-center">
+					<Card>
+						<CardHeader>
+							<CardTitle>About us</CardTitle>
+							<CardDescription>More on us & what we provide</CardDescription>
+						</CardHeader>
+	
+						<CardContent className="space-y-5">
+							<p>
+								Meisto is a recipe gallery website, showcasing a variety of
+								recipes for cooking in your kitchen. The recipes are curated and
+								freely available for anyone that needs them. Start exploring now!
+							</p>
+	
+							<a href="/" class={buttonVariants({ variant: "default" })}>
+								Explore Recipes
+								<ArrowRight />
+							</a>
+						</CardContent>
+					</Card>
+				</div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+					<Image src={TiramisuImage} alt="Tiramisu" class="rounded-md" />
+
+					<div class="flex flex-col gap-3">
+						<Image src={PizzaImage} alt="Pizza slice" class="rounded-md flex-1 bg-cover" />
+						<Image src={MeatImage} alt="Meat" class="rounded-md flex-1 bg-cover" />
+					</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase" class="py-8">
+      <div class="container px-4">Showcase</div>
+    </section>
+
+    <section id="docs" class="py-8">
+      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2">
+        <div>Image</div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Accesible for developers</CardTitle>
+            <CardDescription
+              >Accessible for cooks & developers alike</CardDescription
+            >
+          </CardHeader>
+
+          <CardContent className="space-y-5">
+            <p>
+              Need a recipe for you own blog or app? we provide an extensive API
+              that is documented for any purpose you may need it for.
+            </p>
+
+            <a href="/" class={buttonVariants({ variant: "default" })}>
+              <Archive />
+              Read the docs
+            </a>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <section id="community" class="py-8">
+      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Need Help?</CardTitle>
+            <CardDescription>Explore our community</CardDescription>
+          </CardHeader>
+
+          <CardContent className="space-y-5">
+            <p>
+              Our community is here to help with common questions, provide
+              helpful guides, or just offer a space to connect with others.
+              Whether you're looking for answers or just want to hang out,
+              you're welcome here!
+            </p>
+
+            <a href="/" class={buttonVariants({ variant: "default" })}>
+              <Compass />
+              Explore our community
+            </a>
+          </CardContent>
+        </Card>
+
+        <div></div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    import { toast } from "sonner";
+
+    const showToast = () => {
+      toast.success("Hello world");
+    };
+
+    document.getElementById("test")?.addEventListener("click", () => {
+      showToast();
+    });
+  </script>
 </AppLayout>
