@@ -17,11 +17,13 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
+  Archive,
   Calculator,
   Calendar,
   Command as CommandIcon,
   Compass,
   CreditCard,
+  Globe,
   NotepadText,
   Settings,
   Smile,
@@ -63,6 +65,32 @@ const recipeSubMenus: SubMenu[] = [
     description:
       "Explore our collections of recipes that are related to one another",
     link: "/recipes/collections",
+  },
+];
+
+const docSubMenus: SubMenu[] = [
+  {
+    title: "API Docs",
+    description: "Documentation on how to use the website's API",
+    link: "/",
+  },
+  {
+    title: "How To Guide",
+    description: "Documentation on how to use the recipes on this website",
+    link: "/",
+  },
+];
+
+const communitySubMenus: SubMenu[] = [
+  {
+    title: "FAQ",
+    description: "See our most commonly asked questions about Meisto",
+    link: "/",
+  },
+  {
+    title: "Github",
+    description: "Help us out, by contibuting to the project on github",
+    link: "/",
   },
 ];
 
@@ -129,15 +157,67 @@ export default function Header(props: Props) {
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
-                <NavigationMenuContent className="p-4 md:w-[400px] lg:w-[500px]">
-                  <NavigationMenuLink>Link 2</NavigationMenuLink>
+                <NavigationMenuContent>
+                  <ul className="p-4 md:w-[400px] lg:w-[500px] grid grid-cols-2 gap-3">
+                    <li className="row-span-3">
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <Archive className="h-6 w-6" />
+
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          Documentation
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Documentation related to the website
+                        </p>
+                      </a>
+                    </li>
+                    {docSubMenus.map((menu) => (
+                      <ListItem
+                        key={menu.title}
+                        icon={menu.icon}
+                        title={menu.title}
+                        href={menu.link}
+                      >
+                        {menu.description}
+                      </ListItem>
+                    ))}
+                  </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Community</NavigationMenuTrigger>
-                <NavigationMenuContent className="p-4 md:w-[400px] lg:w-[500px]">
-                  <NavigationMenuLink>Link 3</NavigationMenuLink>
+                <NavigationMenuContent>
+                  <ul className="p-4 md:w-[400px] lg:w-[500px] grid grid-cols-2 gap-3">
+                    <li className="row-span-3">
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <Globe className="h-6 w-6" />
+
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          Community
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Check out the communities that are related to us!
+                        </p>
+                      </a>
+                    </li>
+                    {communitySubMenus.map((menu) => (
+                      <ListItem
+                        key={menu.title}
+                        icon={menu.icon}
+                        title={menu.title}
+                        href={menu.link}
+                      >
+                        {menu.description}
+                      </ListItem>
+                    ))}
+                  </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
