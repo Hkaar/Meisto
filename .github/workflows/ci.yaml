@@ -55,7 +55,7 @@ jobs:
       - name: Install dependecies
         run: npm install
 
-      - name: Run Linter
+      - name: Run Tests
         run: npm run test
 
   e2e-test:
