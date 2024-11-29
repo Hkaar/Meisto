@@ -1,7 +1,7 @@
 ---
 import AppLayout from "@/layouts/AppLayout.astro";
 
-import { Search, Compass, Archive, ArrowRight } from "lucide-react";
+import { Search, Compass, Archive, ArrowRight, ArchiveIcon, Cake } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import ShowCase from "@/components/ShowCase";
 import { Image } from "astro:assets";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
@@ -93,72 +94,92 @@ import TiramisuImage from "@/assets/images/tiramisu.jpg";
 					</Card>
 				</div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-					<Image src={TiramisuImage} alt="Tiramisu" class="rounded-md" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+					<Image src={TiramisuImage} alt="Tiramisu" loading="eager" class="rounded-s-md" />
 
-					<div class="flex flex-col gap-3">
-						<Image src={PizzaImage} alt="Pizza slice" class="rounded-md flex-1 bg-cover" />
-						<Image src={MeatImage} alt="Meat" class="rounded-md flex-1 bg-cover" />
+					<div class="flex flex-col gap-1">
+						<Image src={PizzaImage} alt="Pizza slice" loading="eager" class="flex-1 bg-cover rounded-tr-md" />
+						<Image src={MeatImage} alt="Meat" loading="eager" class="flex-1 bg-cover rounded-br-md" />
 					</div>
         </div>
       </div>
     </section>
 
     <section id="showcase" class="py-8">
-      <div class="container px-4">Showcase</div>
+      <div class="container px-4 grid place-items-center">
+        <ShowCase client:visible />
+      </div>
     </section>
 
     <section id="docs" class="py-8">
-      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2">
-        <div>Image</div>
+      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+					<Image src={HamburgerImage} alt="Hamburger" loading="eager" class="rounded-s-md size-full object-cover" />
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Accesible for developers</CardTitle>
-            <CardDescription
-              >Accessible for cooks & developers alike</CardDescription
-            >
-          </CardHeader>
+					<div class="flex flex-col gap-1">
+						<Image src={PizzaImage} alt="Pizza slice" loading="eager" class="flex-1 bg-cover rounded-tr-md" />
+						<Image src={SalmonImage} alt="Salmon" loading="eager" class="flex-1 bg-cover rounded-br-md" />
+					</div>
+        </div>
 
-          <CardContent className="space-y-5">
-            <p>
-              Need a recipe for you own blog or app? we provide an extensive API
-              that is documented for any purpose you may need it for.
-            </p>
-
-            <a href="/" class={buttonVariants({ variant: "default" })}>
-              <Archive />
-              Read the docs
-            </a>
-          </CardContent>
-        </Card>
+        <div class="grid place-items-center">
+          <Card>
+            <CardHeader>
+              <CardTitle>Accesible for developers</CardTitle>
+              <CardDescription
+                >Accessible for cooks & developers alike</CardDescription
+              >
+            </CardHeader>
+  
+            <CardContent className="space-y-5">
+              <p>
+                Need a recipe for you own blog or app? we provide an extensive API
+                that is documented for any purpose you may need it for.
+              </p>
+  
+              <a href="/" class={buttonVariants({ variant: "default" })}>
+                <Archive />
+                Read the docs
+              </a>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
 
     <section id="community" class="py-8">
-      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Need Help?</CardTitle>
-            <CardDescription>Explore our community</CardDescription>
-          </CardHeader>
+      <div class="container px-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div class="grid place-items-center">
+          <Card>
+            <CardHeader>
+              <CardTitle>Need Help?</CardTitle>
+              <CardDescription>Explore our community</CardDescription>
+            </CardHeader>
+  
+            <CardContent className="space-y-5">
+              <p>
+                Our community is here to help with common questions, provide
+                helpful guides, or just offer a space to connect with others.
+                Whether you're looking for answers or just want to hang out,
+                you're welcome here!
+              </p>
+  
+              <a href="/" class={buttonVariants({ variant: "default" })}>
+                <Compass />
+                Explore our community
+              </a>
+            </CardContent>
+          </Card>
+        </div>
 
-          <CardContent className="space-y-5">
-            <p>
-              Our community is here to help with common questions, provide
-              helpful guides, or just offer a space to connect with others.
-              Whether you're looking for answers or just want to hang out,
-              you're welcome here!
-            </p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+					<Image src={TiramisuImage} alt="Tiramisu" loading="eager" class="rounded-s-md" />
 
-            <a href="/" class={buttonVariants({ variant: "default" })}>
-              <Compass />
-              Explore our community
-            </a>
-          </CardContent>
-        </Card>
-
-        <div></div>
+					<div class="flex flex-col gap-1">
+						<Image src={CakeImage} alt="Cake" loading="eager" class="flex-1 bg-cover rounded-tr-md" />
+						<Image src={BunImage} alt="Bread Buns" loading="eager" class="flex-1 bg-cover rounded-br-md" />
+					</div>
+        </div>
       </div>
     </section>
   </main>
