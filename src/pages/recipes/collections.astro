@@ -3,12 +3,44 @@ import AppLayout from "@/layouts/AppLayout.astro";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
+import SearchBar from "@/components/SearchBar";
+
+import Placeholder from "@/assets/images/placeholder.svg";
+import RecipeCard from "@/components/RecipeCard.astro";
+
+const range = Array(24).keys();
 ---
 
 <AppLayout title="Collections - Meisto">
-  <Header client:load />
+  <Header className="relative" client:load />
 
-  <main class="min-h-screen"></main>
+  <SearchBar
+    searchUrl="#"
+    placeholder="Search for a recipe collection ..."
+    className="sticky top-0 z-20"
+    client:load
+  />
+
+  <main class="min-h-screen py-4 space-y-8">
+    <section
+      class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
+    >
+      {
+        range.map((i) => (
+          <RecipeCard
+            src={Placeholder}
+            alt="Pizza"
+            title="Pizza"
+            loading="lazy"
+          >
+            <p class="line-clamp-2">
+              Pizza cheesy and tasty enough to rival a restaurant.
+            </p>
+          </RecipeCard>
+        ))
+      }
+    </section>
+  </main>
 
   <Footer />
 </AppLayout>
