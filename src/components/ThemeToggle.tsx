@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { 
-  Sun,
-  Moon,
-} from "lucide-react";
+import { Moon, Sun } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
@@ -15,24 +13,24 @@ export default function ThemeToggle(props: Props) {
 
   const handleThemeChange = () => {
     const root = document.querySelector("html") as HTMLHtmlElement;
-    const newTheme = root.classList.contains("dark") ? 'light' : 'dark';
+    const newTheme = root.classList.contains("dark") ? "light" : "dark";
 
-    root.classList.toggle('dark', newTheme === 'dark');
-    localStorage.setItem('theme', newTheme);
+    root.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
 
     setTheme(newTheme);
   };
 
   const loadStoredTheme = () => {
-    const stored = localStorage.getItem('theme');
+    const stored = localStorage.getItem("theme");
     const root = document.querySelector("html") as HTMLHtmlElement;
 
     if (!stored) {
       return null;
     }
 
-    if (stored === 'dark') {
-      root.classList.add('dark');
+    if (stored === "dark") {
+      root.classList.add("dark");
     }
 
     return stored;
@@ -40,7 +38,7 @@ export default function ThemeToggle(props: Props) {
 
   useEffect(() => {
     const root = document.querySelector("html") as HTMLHtmlElement;
-    setTheme(root.classList.contains("dark") ? 'dark' : 'light');
+    setTheme(root.classList.contains("dark") ? "dark" : "light");
 
     const stored = loadStoredTheme();
 
@@ -51,17 +49,11 @@ export default function ThemeToggle(props: Props) {
 
   return (
     <Button
-      className="py-1 px-2"
+      className={cn("py-1 px-2", props.className)}
       variant={"ghost"}
       onClick={() => handleThemeChange()}
     >
-      {theme === "light"
-        ? (
-          <Moon />
-        )
-        : (
-          <Sun />
-        )}
+      {theme === "light" ? <Moon /> : <Sun />}
 
       <span className="sr-only">Toggle theme</span>
     </Button>

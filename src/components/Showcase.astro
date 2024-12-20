@@ -1,0 +1,120 @@
+---
+import "swiper/css/bundle";
+
+import BunImage from "@/assets/images/bun.jpg";
+import CakeImage from "@/assets/images/cake.jpg";
+import HamburgerImage from "@/assets/images/hamburger.jpg";
+import MeatImage from "@/assets/images/meat.jpg";
+import PizzaImage from "@/assets/images/pizza.jpg";
+import SalmonImage from "@/assets/images/salmon.jpg";
+import RecipeCard from "./RecipeCard.astro";
+---
+
+<div class="swiper showcaseSlider max-w-full">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <RecipeCard
+        src={BunImage}
+        alt="Bread buns"
+        title="Bread buns"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">
+          Bread buns perfect for hamburgers and sandwhiches.
+        </p>
+      </RecipeCard>
+    </div>
+
+    <div class="swiper-slide">
+      <RecipeCard
+        src={CakeImage}
+        alt="Squared cake"
+        title="Squared cake"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">
+          Squared cake perfect for special celebrations.
+        </p>
+      </RecipeCard>
+    </div>
+
+    <div class="swiper-slide">
+      <RecipeCard
+        src={HamburgerImage}
+        alt="Hamburgers"
+        title="Hamburgers"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">
+          Hamburgers fancy enough to fit anywhere from your home to the
+          restaurant.
+        </p>
+      </RecipeCard>
+    </div>
+
+    <div class="swiper-slide">
+      <RecipeCard
+        src={MeatImage}
+        alt="Meat steaks"
+        title="Meat steaks"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">Meat steaks that suit anyone to anywhere.</p>
+      </RecipeCard>
+    </div>
+
+    <div class="swiper-slide">
+      <RecipeCard
+        src={PizzaImage}
+        alt="Pizza"
+        title="Pizza"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">
+          Pizza cheesy and tasty enough to rival a restaurant.
+        </p>
+      </RecipeCard>
+    </div>
+
+    <div class="swiper-slide">
+      <RecipeCard
+        src={SalmonImage}
+        alt="Grilled salmon"
+        title="Grilled salmon"
+        loading="lazy"
+        className="max-w-96"
+      >
+        <p class="line-clamp-2">Grilled salmon to rival a restaurants.</p>
+      </RecipeCard>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+
+  import { Navigation } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const slide = new Swiper(".showcaseSlider", {
+      modules: [Navigation],
+      slidesPerView: 3.5,
+      loop: true,
+      spaceBetween: 12,
+      autoplay: {
+        delay: 2500,
+      },
+      navigation: {
+        nextEl: ".showcaseNext",
+        prevEl: ".showcasePrev",
+      },
+    });
+
+    console.debug(slide);
+  });
+</script>

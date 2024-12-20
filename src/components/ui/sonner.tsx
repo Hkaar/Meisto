@@ -1,23 +1,23 @@
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import { Toaster as Sonner } from "sonner"
+// import { useTheme } from "next-themes"
+import { useEffect, useState } from "react";
+import { Toaster as Sonner } from "sonner";
 
-type ToasterProps = React.ComponentProps<typeof Sonner>
+type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
   // const { theme = "system" } = useTheme()
   const [theme, setTheme] = useState("system");
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme');
+    const stored = localStorage.getItem("theme");
 
-    if (stored && ['dark', 'light'].includes(stored)) {
+    if (stored && ["dark", "light"].includes(stored)) {
       setTheme(stored);
       return;
     }
 
     const root = document.querySelector("html") as HTMLHtmlElement;
-    root.classList.contains('dark') ? setTheme('dark') : setTheme('light');
+    root.classList.contains("dark") ? setTheme("dark") : setTheme("light");
   }, []);
 
   return (
@@ -38,7 +38,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }}
       {...props}
     />
-  )
-}
+  );
+};
 
-export { Toaster }
+export { Toaster };

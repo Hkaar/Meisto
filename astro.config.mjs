@@ -11,16 +11,21 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   output: "hybrid",
 
-  integrations: [tailwind({
-    applyBaseStyles: false,
-  }), react()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+  ],
 
   vite: {
     build: {
       cssMinify: true,
       minify: true,
-    }
+    },
   },
 
-  adapter: cloudflare()
+  adapter: cloudflare({
+    imageService: "cloudflare",
+  }),
 });

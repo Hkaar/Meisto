@@ -17,17 +17,12 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
-  Archive,
-  Calculator,
-  Calendar,
   Command as CommandIcon,
   Compass,
-  CreditCard,
+  Cookie,
   Globe,
+  MessageCircleQuestion,
   NotepadText,
-  Settings,
-  Smile,
-  User,
 } from "lucide-react";
 import {
   Command,
@@ -37,8 +32,8 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
+import { Github } from "./icons";
 
 interface Props {
   className?: string;
@@ -49,6 +44,7 @@ type SubMenu = {
   title: string;
   description: string;
   link: string;
+  target?: string;
 };
 
 const recipeSubMenus: SubMenu[] = [
@@ -68,29 +64,19 @@ const recipeSubMenus: SubMenu[] = [
   },
 ];
 
-const docSubMenus: SubMenu[] = [
-  {
-    title: "API Docs",
-    description: "Documentation on how to use the website's API",
-    link: "/",
-  },
-  {
-    title: "How To Guide",
-    description: "Documentation on how to use the recipes on this website",
-    link: "/",
-  },
-];
-
 const communitySubMenus: SubMenu[] = [
   {
+    icon: <MessageCircleQuestion className="size-4" />,
     title: "FAQ",
     description: "See our most commonly asked questions about Meisto",
-    link: "/",
+    link: "/community/faq",
   },
   {
+    icon: <Github className="size-4" />,
     title: "Github",
     description: "Help us out, by contibuting to the project on github",
-    link: "/",
+    link: "https://github.com/Hkaar/Meisto",
+    target: "_blank",
   },
 ];
 
@@ -140,42 +126,25 @@ export default function Header(props: Props) {
                 <NavigationMenuTrigger>Recipes</NavigationMenuTrigger>
 
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    {recipeSubMenus.map((menu) => (
-                      <ListItem
-                        key={menu.title}
-                        icon={menu.icon}
-                        title={menu.title}
-                        href={menu.link}
-                      >
-                        {menu.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
-                <NavigationMenuContent>
                   <ul className="p-4 md:w-[400px] lg:w-[500px] grid grid-cols-2 gap-3">
                     <li className="row-span-3">
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
                       >
-                        <Archive className="h-6 w-6" />
+                        <Cookie className="h-6 w-6" />
 
                         <div className="mb-2 mt-4 text-lg font-medium">
-                          Documentation
+                          Recipes
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Documentation related to the website
+                          Recipes that we curated and serve to you
                         </p>
                       </a>
                     </li>
-                    {docSubMenus.map((menu) => (
+                    {recipeSubMenus.map((menu) => (
                       <ListItem
+                        target={menu.target}
                         key={menu.title}
                         icon={menu.icon}
                         title={menu.title}
@@ -209,6 +178,7 @@ export default function Header(props: Props) {
                     </li>
                     {communitySubMenus.map((menu) => (
                       <ListItem
+                        target={menu.target}
                         key={menu.title}
                         icon={menu.icon}
                         title={menu.title}
@@ -255,34 +225,23 @@ export default function Header(props: Props) {
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Suggestions">
                 <CommandItem>
-                  <Calendar />
-                  <span>Calendar</span>
+                  <Compass />
+                  <span>Browse recipes</span>
                 </CommandItem>
                 <CommandItem>
-                  <Smile />
-                  <span>Search Emoji</span>
-                </CommandItem>
-                <CommandItem disabled>
-                  <Calculator />
-                  <span>Calculator</span>
+                  <NotepadText />
+                  <span>See collections</span>
                 </CommandItem>
               </CommandGroup>
               <CommandSeparator />
-              <CommandGroup heading="Settings">
+              <CommandGroup heading="Other">
                 <CommandItem>
-                  <User />
-                  <span>Profile</span>
-                  <CommandShortcut>⌘P</CommandShortcut>
+                  <MessageCircleQuestion />
+                  <span>Check out our FAQ</span>
                 </CommandItem>
                 <CommandItem>
-                  <CreditCard />
-                  <span>Billing</span>
-                  <CommandShortcut>⌘B</CommandShortcut>
-                </CommandItem>
-                <CommandItem>
-                  <Settings />
-                  <span>Settings</span>
-                  <CommandShortcut>⌘S</CommandShortcut>
+                  <Github />
+                  <span>Checkout our github</span>
                 </CommandItem>
               </CommandGroup>
             </CommandList>
