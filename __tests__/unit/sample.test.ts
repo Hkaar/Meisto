@@ -1,17 +1,12 @@
-import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { expect, test } from "vitest";
 import Footer from "@/components/Footer.astro";
 
+import { createReactContainer } from "__tests__/lib";
+
 test("Footer with loaded", async () => {
-  // const container = await AstroContainer.create();
+  const container = await createReactContainer();
 
-  // container.addClientRenderer({
-  //   name: "@astro/react",
-  //   entrypoint: "@astrojs/react/client.js",
-  // });
+  const result = await container.renderToString(Footer, {});
 
-  // const result = await container.renderToString(Footer, {});
-
-  // expect(result).toContain("Copyright");
-  expect(1 === 1);
+  expect(result).toContain("Copyright");
 });
