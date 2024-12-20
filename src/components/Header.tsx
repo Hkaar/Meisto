@@ -17,18 +17,12 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
-  Calculator,
-  Calendar,
   Command as CommandIcon,
   Compass,
   Cookie,
-  CreditCard,
   Globe,
   MessageCircleQuestion,
   NotepadText,
-  Settings,
-  Smile,
-  User,
 } from "lucide-react";
 import {
   Command,
@@ -38,7 +32,6 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import { Github } from "./icons";
 

@@ -31,6 +31,8 @@ function SearchBar(props: SearchBarProps) {
             type="text"
             placeholder={props.placeholder}
             className="w-full ps-8"
+            value={query}
+            onChange={handleChange}
           />
           <div className="absolute inset-y-2.5 start-0 ps-2">
             <Search className="size-4" size={18} />

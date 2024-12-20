@@ -101,7 +101,7 @@ import RecipeCard from "./RecipeCard.astro";
   import { Navigation } from "swiper/modules";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const _ = new Swiper(".showcaseSlider", {
+    const slide = new Swiper(".showcaseSlider", {
       modules: [Navigation],
       slidesPerView: 3.5,
       loop: true,
@@ -114,5 +114,7 @@ import RecipeCard from "./RecipeCard.astro";
         prevEl: ".showcasePrev",
       },
     });
+
+    console.debug(slide);
   });
 </script>
