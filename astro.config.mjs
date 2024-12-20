@@ -9,18 +9,21 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+  output: "hybrid",
 
-  integrations: [tailwind({
-    applyBaseStyles: false,
-  }), react()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+  ],
 
   vite: {
     build: {
       cssMinify: true,
       minify: true,
-    }
+    },
   },
 
-  adapter: cloudflare()
+  adapter: cloudflare(),
 });
